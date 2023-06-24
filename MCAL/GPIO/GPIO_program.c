@@ -148,7 +148,7 @@ enu_GPIO_error_status_t GPIO_setpinvalue(uint8_t u8_a_portid , uint8_t u8_a_pini
 				break ;
 				
 				case GPIO_PORTF:
-				clear_bit(GPIOF_DATA , u8_a_pinid);       /** SET THIS PIN AS LOW **/
+				clear_bit(u8_a_pinid , u8_a_pinid);       /** SET THIS PIN AS LOW **/
 				break ;
 				
 				default:
@@ -185,7 +185,7 @@ enu_GPIO_error_status_t GPIO_setpinvalue(uint8_t u8_a_portid , uint8_t u8_a_pini
 				break ;
 				
 				case GPIO_PORTF:
-				set_bit(GPIOF_DATA , u8_a_pinid);         /** SET THIS PIN AS HIGH  **/
+				set_bit(GPIOF_DATA , u8_a_pinid);    /**  SET THIS PIN AS HIGH  **/
 				break ;
 				
 				default:

@@ -31,6 +31,7 @@ enu_led_error_status_t LED_init(uint8_t u8_a_ledport , uint8_t u8_a_ledpin)
 	
 	enu_l_ledpin_status = GPIO_setpindir(u8_a_ledport , u8_a_ledpin , GPIO_PIN_OUTPUT);  /** SET THE LED PIN AS OUTPUT **/
 	
+	
 	if ( enu_l_ledpin_status == GPIO_SUCCEED )
 	{
 		/** DO NOTHING **/

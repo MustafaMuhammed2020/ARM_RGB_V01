@@ -27,9 +27,13 @@ Project File Date:  06/24/2023
 <h2>Output:</h2>
 *** Using Compiler 'V6.19', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Rebuild target 'Target 1'
-compiling LED_program.c...
 compiling button_program.c...
 compiling GPIO_program.c...
+compiling LED_program.c...
+main.c(37): warning: // comments are not allowed in this language [-Wcomment]
+                //APP_start();
+                ^
+1 warning generated.
 compiling main.c...
 compiling APP.c...
 assembling startup_TM4C123.s...
@@ -197,8 +201,8 @@ RTE/Device/TM4C123GH6PM/system_TM4C123.c(586): warning: 'CLOCK_SETUP' is not def
 53 warnings generated.
 compiling system_TM4C123.c...
 linking...
-Program Size: Code=2156 RO-data=636 RW-data=0 ZI-data=616  
-".\Objects\RGB_V01.axf" - 0 Error(s), 53 Warning(s).
+Program Size: Code=2056 RO-data=636 RW-data=0 ZI-data=616  
+".\Objects\RGB_V01.axf" - 0 Error(s), 54 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -225,9 +229,9 @@ Package Vendor: Keil
 
    * Component: Keil::Device:Startup:1.0.1
       Include file:  Device/Include/TM4C123/TM4C123.h
-      Source file:   Device/Source/ARM/startup_TM4C123.s
       Source file:   Device/Source/system_TM4C123.c
-Build Time Elapsed:  00:00:03
+      Source file:   Device/Source/ARM/startup_TM4C123.s
+Build Time Elapsed:  00:00:04
 </pre>
 </body>
 </html>
