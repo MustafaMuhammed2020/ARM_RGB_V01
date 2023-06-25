@@ -31,6 +31,9 @@ enu_led_error_status_t LED_init(uint8_t u8_a_ledport , uint8_t u8_a_ledpin)
 	
 	enu_l_ledpin_status = GPIO_setpindir(u8_a_ledport , u8_a_ledpin , GPIO_PIN_OUTPUT);  /** SET THE LED PIN AS OUTPUT **/
 	
+	GPIO_enableportclk(u8_a_ledport );              /** ENABLE CLK TO PORT **/
+	
+	GPIO_enabledigital(u8_a_ledport , u8_a_ledpin); /** ENABLE DIGITALFUNCTIONALITY **/
 	
 	if ( enu_l_ledpin_status == GPIO_SUCCEED )
 	{
@@ -131,10 +134,15 @@ void LED_pattern3(void)
 
 void LED_pattern4(void)
 {
-	/** LED 1 , LED 2 , LED 3 AND LED 4 ARE ON **/
+	/**
+	GPIO_setpinsvalue(GPIO_PORTF , 0x0E , 0x0E);
+	
+	 LED 1 , LED 2 , LED 3 AND LED 4 ARE ON  **/
+	
 	LED_on(REDLED_PORT , REDLED_PIN);
 	LED_on(GREENLED_PORT , GREENLED_PIN);
 	LED_on(BLUELED_PORT , BLUELED_PIN);
+	
 }
 
 void LED_pattern5(void)

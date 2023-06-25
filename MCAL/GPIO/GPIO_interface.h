@@ -73,12 +73,36 @@ enu_GPIO_error_status_t GPIO_setpindir(uint8_t u8_a_portid , uint8_t u8_a_pinid 
 enu_GPIO_error_status_t GPIO_setpinvalue(uint8_t u8_a_portid , uint8_t u8_a_pinid , uint8_t u8_a_pinval);
 
 
+/***********************************************************************/
+/* DESCRIBTION  : FUNCTION TO SET THE VALUE OF PINS IN SPECIFIC PORT   */
+/* INPUT        : PORT , PINID , DIRECTION                             */
+/* RETURNS      : enu_GPIO_error_status_t                              */
+/***********************************************************************/
+enu_GPIO_error_status_t GPIO_setpinsvalue(uint8_t u8_a_portid , uint8_t u8_a_pinsmask , uint8_t u8_a_bitsvalue);
+
+
 /******************************************************************/
 /* DESCRIBTION  : FUNCTION TO GET THE VALUE OF SPECIFIC PIN       */
 /* INPUT   : PORTID , PINID , POINTER TO SET THE VALUE IN IT      */
 /* RETURNS : PinRead_t                                            */
 /******************************************************************/
 enu_GPIO_error_status_t GPIO_readpin(uint8_t u8_a_portid , uint8_t u8_a_pinid , uint8_t* u8_a_retval);
+
+
+/******************************************************************/
+/* DESCRIBTION  : FUNCTION TO ENABLE DIGITAL FUNCTIONALITY        */
+/* INPUT   : PORTID , PINID                                       */
+/* RETURNS : PinRead_t                                            */
+/******************************************************************/
+enu_GPIO_error_status_t GPIO_enabledigital(uint8_t u8_a_portid , uint8_t u8_a_pinid );
+
+/******************************************************************/
+/* DESCRIBTION  : FUNCTION TO ENABLE CLOCK TO PORT                */
+/* INPUT   : PORT_ID                                              */
+/* RETURNS : PinRead_t                                            */
+/******************************************************************/
+enu_GPIO_error_status_t GPIO_enableportclk(uint8_t u8_a_portid );
+
 
 
 #endif

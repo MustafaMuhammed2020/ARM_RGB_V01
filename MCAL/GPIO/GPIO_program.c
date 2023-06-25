@@ -111,6 +111,7 @@ enu_GPIO_error_status_t GPIO_setpindir(uint8_t u8_a_portid , uint8_t u8_a_pinid 
 
 
 
+
 /***********************************************************************/
 /* DESCRIBTION  : FUNCTION TO SET THE VALUE OF SPECIFIC PIN            */
 /* INPUT        : PORT , PINID , DIRECTION                             */
@@ -148,7 +149,7 @@ enu_GPIO_error_status_t GPIO_setpinvalue(uint8_t u8_a_portid , uint8_t u8_a_pini
 				break ;
 				
 				case GPIO_PORTF:
-				clear_bit(u8_a_pinid , u8_a_pinid);       /** SET THIS PIN AS LOW **/
+				clear_bit(GPIOF_DATA , u8_a_pinid);       /** SET THIS PIN AS LOW **/
 				break ;
 				
 				default:
@@ -205,7 +206,49 @@ enu_GPIO_error_status_t GPIO_setpinvalue(uint8_t u8_a_portid , uint8_t u8_a_pini
 	return enu_l_setpinval_state ;    /** RETURN THE FINAL STATE OF THE FUNCTION **/
 }
 
-
+/***********************************************************************/
+/* DESCRIBTION  : FUNCTION TO SET THE VALUE OF PINS IN SPECIFIC PORT   */
+/* INPUT        : PORT , PINID , DIRECTION                             */
+/* RETURNS      : enu_GPIO_error_status_t                              */
+/***********************************************************************/
+enu_GPIO_error_status_t GPIO_setpinsvalue(uint8_t u8_a_portid , uint8_t u8_a_pinsmask , uint8_t u8_a_bitsvalue)
+{
+	enu_GPIO_error_status_t enu_l_setpinsvalue_state = GPIO_SUCCEED ;  /** LOCAL VARIABLE TO RETURN THE STATUS OF VALUE **/ 
+	
+	switch(u8_a_portid)   /** SWITCH CASE ON THE PORT ID **/
+			{
+				case GPIO_PORTA:
+				
+				(*((volatile uint32_t *) (GPIOA_base + (u8_a_pinsmask << 2)))) = u8_a_bitsvalue;
+				break ;
+				
+				case GPIO_PORTB:
+				(*((volatile uint32_t *) (GPIOB_base + (u8_a_pinsmask << 2)))) = u8_a_bitsvalue;
+				break ;
+				
+				case GPIO_PORTC:
+				(*((volatile uint32_t *) (GPIOC_base + (u8_a_pinsmask << 2)))) = u8_a_bitsvalue;
+				break ;
+				
+				case GPIO_PORTD:
+				(*((volatile uint32_t *) (GPIOD_base + (u8_a_pinsmask << 2)))) = u8_a_bitsvalue;
+				break ;
+				
+				case GPIO_PORTE:
+				(*((volatile uint32_t *) (GPIOE_base + (u8_a_pinsmask << 2)))) = u8_a_bitsvalue;
+				break ;
+				
+				case GPIO_PORTF:
+				(*((volatile uint32_t *) (GPIOF_base + (u8_a_pinsmask << 2)))) = u8_a_bitsvalue;
+				break ;
+				
+				default:
+				enu_l_setpinsvalue_state = GPIO_FAILURE ;  /** RETURN VALUE AS NOT VALID **/
+				break ;
+			}
+			
+			return enu_l_setpinsvalue_state ;
+}
 
 /******************************************************************/
 /* DESCRIBTION  : FUNCTION TO GET THE VALUE OF SPECIFIC PIN       */
@@ -250,3 +293,97 @@ enu_GPIO_error_status_t GPIO_readpin(uint8_t u8_a_portid , uint8_t u8_a_pinid , 
 	return enu_l_readpin_state ;          /** RETURN THE FINAL STATE OF THE FUNCTION **/	
 }
 
+/******************************************************************/
+/* DESCRIBTION  : FUNCTION TO ENABLE CLOCK TO PORT                */
+/* INPUT   : PORT_ID                                              */
+/* RETURNS : PinRead_t                                            */
+/******************************************************************/
+enu_GPIO_error_status_t GPIO_enableportclk(uint8_t u8_a_portid )
+{
+	enu_GPIO_error_status_t enu_l_enableclk_state = GPIO_SUCCEED ;  /** LOCAL VARIABLE TO HOLD THE FUNCTION ERROR STATE **/
+	
+	switch(u8_a_portid)      /** SWITCH CASE ON PORT ID **/
+	{
+		case GPIO_PORTA:     
+		set_bit(RCGCGPIO , 0 ) ;
+		break ;
+		
+		case GPIO_PORTB:      
+		set_bit(RCGCGPIO , 1 ) ;
+		break ;
+		
+		case GPIO_PORTC:    
+		set_bit(RCGCGPIO , 2 ) ;
+		break ;
+		
+		case GPIO_PORTD:      
+		set_bit(RCGCGPIO , 3 ) ;
+		break ;
+		
+		case GPIO_PORTE:      
+		set_bit(RCGCGPIO , 4 ) ;
+		break ;
+		
+		case GPIO_PORTF:      
+		set_bit(RCGCGPIO , 5 ) ;
+		break ;
+		
+		default:
+		enu_l_enableclk_state = GPIO_FAILURE ;         /**      READ IS NOT VALID    **/
+		break ;
+	} 
+	
+	return enu_l_enableclk_state ; 
+}
+	
+	
+/******************************************************************/
+/* DESCRIBTION  : FUNCTION TO ENABLE DIGITAL FUNCTIONALITY        */
+/* INPUT   : PORTID , PINID                                       */
+/* RETURNS : PinRead_t                                            */
+/******************************************************************/
+enu_GPIO_error_status_t GPIO_enabledigital(uint8_t u8_a_portid , uint8_t u8_a_pinid )
+{
+	enu_GPIO_error_status_t enu_l_enabledigital = GPIO_SUCCEED ;  /** LOCAL VARIABLE TO HOLD THE FUNCTION ERROR STATE **/
+	
+	switch(u8_a_portid)      /** SWITCH CASE ON PORT ID **/
+	{
+		case GPIO_PORTA:     
+		set_bit(GPIOA_GPIODEN , u8_a_pinid ) ;
+		break ;
+		
+		case GPIO_PORTB:      
+		set_bit(GPIOB_GPIODEN , u8_a_pinid ) ;
+		break ;
+		
+		case GPIO_PORTC:    
+		set_bit(GPIOC_GPIODEN , u8_a_pinid ) ;
+		break ;
+		
+		case GPIO_PORTD:      
+		set_bit(GPIOD_GPIODEN , u8_a_pinid ) ;
+		break ;
+		
+		case GPIO_PORTE:      
+		set_bit(GPIOE_GPIODEN , u8_a_pinid ) ;
+		break ;
+		
+		case GPIO_PORTF:      
+		set_bit(GPIOF_GPIODEN , u8_a_pinid ) ;
+		break ;
+		
+		default:
+		enu_l_enabledigital = GPIO_FAILURE ;         /**      READ IS NOT VALID    **/
+		break ;
+	} 
+	
+	return enu_l_enabledigital ;
+}
+	
+	
+	
+	
+	
+	
+	
+	

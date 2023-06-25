@@ -28,14 +28,14 @@ Project File Date:  06/24/2023
 *** Using Compiler 'V6.19', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Rebuild target 'Target 1'
 compiling button_program.c...
+MCAL/GPIO/GPIO_program.c(389): warning: no newline at end of file [-Wnewline-eof]
+        
+        ^
+1 warning generated.
 compiling GPIO_program.c...
 compiling LED_program.c...
-main.c(37): warning: // comments are not allowed in this language [-Wcomment]
-                //APP_start();
-                ^
-1 warning generated.
-compiling main.c...
 compiling APP.c...
+compiling main.c...
 assembling startup_TM4C123.s...
 RTE/Device/TM4C123GH6PM/system_TM4C123.c(13): warning: In file included from...
 C:/Users/click/AppData/Local/Arm/Packs/Keil/TM4C_DFP/1.1.0/Device/Include/TM4C123\TM4C123.h(98): warning: In file included from...
@@ -201,7 +201,7 @@ RTE/Device/TM4C123GH6PM/system_TM4C123.c(586): warning: 'CLOCK_SETUP' is not def
 53 warnings generated.
 compiling system_TM4C123.c...
 linking...
-Program Size: Code=2056 RO-data=636 RW-data=0 ZI-data=616  
+Program Size: Code=3252 RO-data=636 RW-data=0 ZI-data=616  
 ".\Objects\RGB_V01.axf" - 0 Error(s), 54 Warning(s).
 
 <h2>Software Packages used:</h2>
@@ -228,10 +228,10 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.6.0
 
    * Component: Keil::Device:Startup:1.0.1
+      Source file:   Device/Source/ARM/startup_TM4C123.s
       Include file:  Device/Include/TM4C123/TM4C123.h
       Source file:   Device/Source/system_TM4C123.c
-      Source file:   Device/Source/ARM/startup_TM4C123.s
-Build Time Elapsed:  00:00:04
+Build Time Elapsed:  00:00:06
 </pre>
 </body>
 </html>
